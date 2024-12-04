@@ -56,5 +56,20 @@ int main() {
     assert(rng1 == rng2);
   }
 
+  {
+    using rand_32 =
+        std::linear_congruential_engine<uint32_t, 48'271, 2'147'483'647, 0>;
+    using rand_64 =
+        std::linear_congruential_engine<uint64_t, 48'271, 2'147'483'647, 0>;
+    using rand_32_fast =
+        std::linear_congruential_engine<std::uint_fast32_t, 48'271,
+                                        2'147'483'647, 0>;
+
+    static_assert(rand_32::max() != rand_64::max());
+
+    // this is implementation depedent!!??
+    static_assert(rand_32::max() == rand_32_fast::max());
+  }
+
   return result;
 }
