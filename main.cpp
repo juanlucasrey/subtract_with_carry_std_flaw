@@ -29,6 +29,7 @@ constexpr auto period(RNG const & /* rng */) -> unsigned long long {
 
 int main() {
   int result = 0;
+  // check
 
   {
     std::subtract_with_carry_engine<std::uint_fast32_t, 16, 2, 4> rng1;
